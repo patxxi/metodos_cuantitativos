@@ -5,10 +5,8 @@ class MixedCongruentialMethod():
         self._c = c
         self._m = m
 
-    def random(self, length=1, low=0, high=10):
+    def random(self, length=1):
         results = []
-
-        # This range could be with start and final range or just N numbers
 
         for i in range(length):
             pseudo_result = self._a * self._x + self._c
@@ -21,4 +19,4 @@ class MixedCongruentialMethod():
 
 if __name__ == '__main__':
     random_generator = MixedCongruentialMethod(5, 7, 4, 8)
-    print(random_generator.random(2, 10))
+    print(random_generator.random(8))
