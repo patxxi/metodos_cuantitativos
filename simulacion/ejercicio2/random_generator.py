@@ -5,7 +5,7 @@ class MixedCongruentialMethod():
         self._c = c
         self._m = m
 
-    def random(self, start=1, final=0):
+    def random(self, length=1, low=0, high=10):
         results = []
 
         # This range could be with start and final range or just N numbers
