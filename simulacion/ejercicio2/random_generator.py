@@ -10,7 +10,7 @@ class MixedCongruentialMethod():
 
         # This range could be with start and final range or just N numbers
 
-        for i in (range(start, final) if final != 0 else range(start)):
+        for i in range(length):
             pseudo_result = self._a * self._x + self._c
             mod = pseudo_result % self._m
             result = (mod, mod / self._m)
