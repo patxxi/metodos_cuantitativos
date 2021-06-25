@@ -13,7 +13,7 @@ class MixedCongruentialMixed():
         for i in (range(start, final) if final != 0 else range(start)):
             pseudo_result = self._a * self._x + self._c
             mod = pseudo_result % self._m
-            result = mod / self._m
+            result = (mod, mod / self._m)
             results.append(result)
             self._x = mod
         return results
