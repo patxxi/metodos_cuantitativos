@@ -1,4 +1,4 @@
-class MixedCongruentialMixed():
+class MixedCongruentialMethod():
     def __init__(self, a, c, x, m):
         self._a = a
         self._x = x
@@ -20,5 +20,5 @@ class MixedCongruentialMixed():
 
 
 if __name__ == '__main__':
-    random_generator = MixedCongruentialMixed(5, 7, 4, 8)
+    random_generator = MixedCongruentialMethod(5, 7, 4, 8)
     print(random_generator.random(2, 10))
