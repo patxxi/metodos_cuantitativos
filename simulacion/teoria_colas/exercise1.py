@@ -113,8 +113,8 @@ Paquetes atendidos hasta este minuto: {treated_clients}
     print(f"""
 Tiempo medio de espera en la cola: {queue._wq}
 Tiempo medio de espera en el sistema: {queue._w}
-Tiempo medio de paquetes en la cola: {queue._Lq}
-Tiempo medio de paquetes en el sistema: {queue._Ls}
+Cantidad medio de paquetes en la cola: {queue._Lq}
+Cantidad medio de paquetes en el sistema: {queue._Ls}
 Paquetes totales recibidos: {clients}
 Paquetes actuales que quedaron en la cola: {actual_clients}
 Total de paquetes atendidos: {treated_clients}
