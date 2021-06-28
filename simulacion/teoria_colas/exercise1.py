@@ -1,4 +1,3 @@
-from random_generator import MixedCongruentialMethod
 import math
 import random
 
@@ -35,7 +34,11 @@ class QueueingTheory():
 def run():
     queue = QueueingTheory(60/60, 45/60)
     queue_probabilities = [
-        queue.probability_income_package(i, 1) for i in range(10)]
+        queue.probability_income_package(i, 1) for i in range(6)]
+
+    for i, probability in enumerate(queue_probabilities):
+        print(
+            f"Probabilidad de que hayan {i} paquetes en el sistema: {probability}")
     probabilities = []
     PERCENTAGE = 100
     clients = 0
@@ -49,11 +52,6 @@ def run():
         probabilities.append(PERCENTAGE)
 
     probabilities.sort()
-
-    print(f"Tiempo promedio de espera en la cola: {queue._wq}")
-    print(f"Tiempo promedio en el sistema: {queue._w}")
-    print(f"Numero de clientes en la cola: {queue._Lq}")
-    print(f"Numero medio de paquetes en el sistema: {queue._Ls}")
 
     for i in range(TIME):
         print(
@@ -77,12 +75,22 @@ def run():
             print("Se ha atendido a un cliente este minuto")
             treated_clients += 1
             actual_clients = (actual_clients - 1 if actual_clients > 0 else 0)
+        else:
+            print("No se ha atendido a un cliente este minuto")
 
-        print(
-            f"Paquetes totales recibidos hasta este minuto: {clients}")
-        print(
-            f"Paquetes actuales en la cola en este minuto: {actual_clients}")
-        print(f"Clientes atendidos hasta este minuto: {treated_clients}")
+        print(f"""
+Paquetes totales recibidos hasta este minuto: {clients}
+Paquetes actuales en la cola en este minuto: {actual_clients}
+Paquetes atendidos hasta este minuto: {treated_clients}
+                """)
+
+    print(f"\n------------------------------------- Fin de la simulacion. Analisis de detalles-------------------------------------")
+    print(f"""
+Tiempo medio de espera en la cola: {queue._wq}
+Tiempo medio de espera en el sistema: {queue._w}
+Tiempo medio de paquetes en la cola: {queue._Lq}
+Tiempo medio de paquetes en el sistema: {queue._Ls}
+            """)
 
 
 if __name__ == "__main__":
