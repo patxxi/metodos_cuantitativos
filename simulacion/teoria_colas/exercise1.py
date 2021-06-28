@@ -2,6 +2,29 @@ import math
 import random
 
 
+class MixedCongruentialMethod():
+    def __init__(self, a, c, x, m):
+        """"Class to create a generator of random numbers
+        Using the Mixed Congruential Method, this needs
+        a, c, x, m in order"""
+        self._a = a
+        self._x = x
+        self._c = c
+        self._m = m
+
+    def generate_random(self, length=1):
+        """Function to create N random numbers."""
+        results = []
+
+        for i in range(length):
+            pseudo_result = self._a * self._x + self._c
+            mod = pseudo_result % self._m
+            result = mod / self._m
+            results.append(result)
+            self._x = mod
+        return results
+
+
 class QueueingTheory():
 
     def __init__(self, miu, lamb):
@@ -46,6 +69,7 @@ def run():
     treated_clients = 0
     PROBABILITY_BEING_SERVED = queue.probability_stay_time(1)
     TIME = 60
+    random_generator = MixedCongruentialMethod(a=2, c=19, x=3, m=10)
 
     for i in range(len(queue_probabilities)-1, 0, -1):
         PERCENTAGE -= queue_probabilities[i] * 100
@@ -56,7 +80,8 @@ def run():
     for i in range(TIME):
         print(
             f"\n------------------------------------- Minuto {i+1} -------------------------------------")
-        random_number = random.random() * 100
+        #random_number = random.random() * 100
+        random_number = random_generator.generate_random().pop() * 100
 
         prev = float()
         for i, prob in enumerate(probabilities):
@@ -70,7 +95,7 @@ def run():
                 break
             prev = prob
 
-        random_number = random.random()
+        random_number = random_generator.generate_random().pop()
         if random_number <= PROBABILITY_BEING_SERVED:
             print("Se ha atendido a un cliente este minuto")
             treated_clients += 1
@@ -90,6 +115,9 @@ Tiempo medio de espera en la cola: {queue._wq}
 Tiempo medio de espera en el sistema: {queue._w}
 Tiempo medio de paquetes en la cola: {queue._Lq}
 Tiempo medio de paquetes en el sistema: {queue._Ls}
+Paquetes totales recibidos: {clients}
+Paquetes actuales que quedaron en la cola: {actual_clients}
+Total de paquetes atendidos: {treated_clients}
             """)
 
 
